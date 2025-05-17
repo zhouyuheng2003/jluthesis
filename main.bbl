@@ -1,0 +1,165 @@
+\begin{thebibliography}{10}
+\providecommand{\bibauthor}[1]{#1}
+\providecommand{\bibeditor}[1]{#1}
+\providecommand{\bibtranslator}[1]{#1}
+\providecommand{\bibtitle}[1]{#1}
+\providecommand{\bibbooktitle}[1]{#1}
+\providecommand{\bibjournal}[1]{#1}
+\providecommand{\bibmark}[1]{#1}
+\providecommand{\bibcountry}[1]{#1}
+\providecommand{\bibpatentid}[1]{#1}
+\providecommand{\bibedition}[1]{#1}
+\providecommand{\biborganization}[1]{#1}
+\providecommand{\bibaddress}[1]{#1}
+\providecommand{\bibpublisher}[1]{#1}
+\providecommand{\bibinstitution}[1]{#1}
+\providecommand{\bibschool}[1]{#1}
+\providecommand{\bibvolume}[1]{#1}
+\providecommand{\bibnumber}[1]{#1}
+\providecommand{\bibversion}[1]{#1}
+\providecommand{\bibpages}[1]{#1}
+\providecommand{\bibmodifydate}[1]{#1}
+\providecommand{\bibcitedate}[1]{#1}
+\providecommand{\bibyear}[1]{#1}
+\providecommand{\bibdate}[1]{#1}
+\providecommand{\biburl}[1]{\newline\url{#1}}
+
+\bibitem{narayanan2016precautionary}
+\bibauthor{NARAYANAN A\@, HUEY J\@, FELTEN E~W}\@. \bibtitle{A precautionary
+  approach to big data privacy}\bibmark{[J]}\@. \bibjournal{Data protection on
+  the move: Current developments in ICT and privacy/data protection}\@,
+  \bibyear{2016}\thinspace{}\textnormal{:
+  }\bibpages{357\thinspace{}\textnormal{--}\thinspace{}385}\@.
+
+\bibitem{ford1956maximal}
+\bibauthor{FORD~JR L~R\@, FULKERSON D~R}\@. \bibtitle{Maximal flow through a
+  network}\bibmark{[J]}\@. \bibjournal{Canadian journal of Mathematics}\@,
+  \bibyear{1956}\@, \bibvolume{8}\thinspace{}\textnormal{:
+  }\bibpages{399\thinspace{}\textnormal{--}\thinspace{}404}\@.
+
+\bibitem{karger1993global}
+\bibauthor{KARGER D~R}\@. \bibtitle{Global Min-cuts in RNC, and Other
+  Ramifications of a Simple Min-Cut Algorithm.}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Soda\thinspace{}\textnormal{: }Vol~93}\@.
+  \bibyear{1993}\thinspace{}\textnormal{:
+  }\bibpages{21\thinspace{}\textnormal{--}\thinspace{}30}\@.
+
+\bibitem{karger1996new}
+\bibauthor{KARGER D~R\@, STEIN C}\@. \bibtitle{A new approach to the minimum
+  cut problem}\bibmark{[J]}\@. \bibjournal{Journal of the ACM (JACM)}\@,
+  \bibyear{1996}\@, \bibvolume{43}\bibnumber{(4)}\thinspace{}\textnormal{:
+  }\bibpages{601\thinspace{}\textnormal{--}\thinspace{}640}\@.
+
+\bibitem{karger2000minimum}
+\bibauthor{KARGER D~R}\@. \bibtitle{Minimum cuts in near-linear
+  time}\bibmark{[J]}\@. \bibjournal{Journal of the ACM (JACM)}\@,
+  \bibyear{2000}\@, \bibvolume{47}\bibnumber{(1)}\thinspace{}\textnormal{:
+  }\bibpages{46\thinspace{}\textnormal{--}\thinspace{}76}\@.
+
+\bibitem{li2021deterministic}
+\bibauthor{LI J}\@. \bibtitle{Deterministic mincut in almost-linear
+  time}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of the 53rd Annual
+  ACM SIGACT Symposium on Theory of Computing}\@.
+  \bibyear{2021}\thinspace{}\textnormal{:
+  }\bibpages{384\thinspace{}\textnormal{--}\thinspace{}395}\@.
+
+\bibitem{dinitz1976structure}
+\bibauthor{DINITZ E~A\@, KARZANOV A~V\@, LOMONOSOV M~V}\@. \bibtitle{On the
+  structure of the system of minimum edge cuts of a graph}\bibmark{[J]}\@.
+  \bibjournal{Issledovaniya po Diskretnoi Optimizatsii}\@,
+  \bibyear{1976}\thinspace{}\textnormal{:
+  }\bibpages{290\thinspace{}\textnormal{--}\thinspace{}306}\@.
+
+\bibitem{fleiner2009quick}
+\bibauthor{FLEINER T\@, FRANK A}\@. \bibtitle{A quick proof for the cactus
+  representation of mincuts}\bibmark{[J]}\@. \bibjournal{EGRES Quick Proof}\@,
+  \bibyear{2009}\@, \bibvolume{3}\thinspace{}\textnormal{: }\bibpages{2009}\@.
+
+\bibitem{karger2009near}
+\bibauthor{KARGER D~R\@, PANIGRAHI D}\@. \bibtitle{A near-linear time algorithm
+  for constructing a cactus representation of minimum cuts}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Proceedings of the Twentieth Annual ACM-SIAM
+  Symposium on Discrete Algorithms}\@. \bibyear{2009}\thinspace{}\textnormal{:
+  }\bibpages{246\thinspace{}\textnormal{--}\thinspace{}255}\@.
+
+\bibitem{he2024cactus}
+\bibauthor{HE Z\@, HUANG S-E\@, SARANURAK T}\@. \bibtitle{Cactus representation
+  of minimum cuts: Derandomize and speed up}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Proceedings of the 2024 Annual ACM-SIAM Symposium
+  on Discrete Algorithms (SODA)}\@. \bibyear{2024}\thinspace{}\textnormal{:
+  }\bibpages{1503\thinspace{}\textnormal{--}\thinspace{}1541}\@.
+
+\bibitem{gupta2010differentially}
+\bibauthor{GUPTA A\@, LIGETT K\@, MCSHERRY F, et~al}\@.
+  \bibtitle{Differentially private combinatorial optimization}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Proceedings of the twenty-first annual ACM-SIAM
+  symposium on Discrete Algorithms}\@. \bibyear{2010}\thinspace{}\textnormal{:
+  }\bibpages{1106\thinspace{}\textnormal{--}\thinspace{}1125}\@.
+
+\bibitem{li2021approximate}
+\bibauthor{LI J\@, PANIGRAHI D}\@. \bibtitle{Approximate gomory--hu tree is
+  faster than n--1 max-flows}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Proceedings of the 53rd Annual ACM SIGACT
+  Symposium on Theory of Computing}\@. \bibyear{2021}\thinspace{}\textnormal{:
+  }\bibpages{1738\thinspace{}\textnormal{--}\thinspace{}1748}\@.
+
+\bibitem{li2020deterministic}
+\bibauthor{LI J\@, PANIGRAHI D}\@. \bibtitle{Deterministic min-cut in
+  poly-logarithmic max-flows}\bibmark{[C]} //\thinspace{}\bibbooktitle{2020
+  IEEE 61st Annual Symposium on Foundations of Computer Science (FOCS)}\@.
+  \bibyear{2020}\thinspace{}\textnormal{:
+  }\bibpages{85\thinspace{}\textnormal{--}\thinspace{}92}\@.
+
+\bibitem{liu2024almost}
+\bibauthor{LIU J\@, UPADHYAY J\@, ZOU Z}\@. \bibtitle{Almost linear time
+  differentially private release of synthetic graphs}\bibmark{[J]}\@.
+  \bibjournal{arXiv preprint arXiv:2406.02156}\@, \bibyear{2024}\@.
+
+\bibitem{karger1994random}
+\bibauthor{KARGER D~R}\@. \bibtitle{Random sampling in cut, flow, and network
+  design problems}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of the
+  twenty-sixth annual ACM symposium on Theory of computing}\@.
+  \bibyear{1994}\thinspace{}\textnormal{:
+  }\bibpages{648\thinspace{}\textnormal{--}\thinspace{}657}\@.
+
+\bibitem{dwork2006differential}
+\bibauthor{DWORK C}\@. \bibtitle{Differential privacy}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{International colloquium on automata, languages,
+  and programming}\@. \bibyear{2006}\thinspace{}\textnormal{:
+  }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}12}\@.
+
+\bibitem{dwork2006calibrating}
+\bibauthor{DWORK C\@, MCSHERRY F\@, NISSIM K, et~al}\@. \bibtitle{Calibrating
+  noise to sensitivity in private data analysis}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Theory of Cryptography: Third Theory of
+  Cryptography Conference, TCC 2006, New York, NY, USA, March 4-7, 2006.
+  Proceedings 3}\@. \bibyear{2006}\thinspace{}\textnormal{:
+  }\bibpages{265\thinspace{}\textnormal{--}\thinspace{}284}\@.
+
+\bibitem{dwork2009differential}
+\bibauthor{DWORK C\@, LEI J}\@. \bibtitle{Differential privacy and robust
+  statistics}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of the
+  forty-first annual ACM symposium on Theory of computing}\@.
+  \bibyear{2009}\thinspace{}\textnormal{:
+  }\bibpages{371\thinspace{}\textnormal{--}\thinspace{}380}\@.
+
+\bibitem{dwork2014algorithmic}
+\bibauthor{DWORK C\@, ROTH A\@, OTHERS}\@. \bibtitle{The algorithmic
+  foundations of differential privacy}\bibmark{[J]}\@. \bibjournal{Foundations
+  and Trends{\textregistered} in Theoretical Computer Science}\@,
+  \bibyear{2014}\@, \bibvolume{9}\bibnumber{(3--4)}\thinspace{}\textnormal{:
+  }\bibpages{211\thinspace{}\textnormal{--}\thinspace{}407}\@.
+
+\bibitem{cunningham1985minimum}
+\bibauthor{CUNNINGHAM W~H}\@. \bibtitle{Minimum cuts, modular functions, and
+  matroid polyhedra}\bibmark{[J]}\@. \bibjournal{Networks}\@, \bibyear{1985}\@,
+  \bibvolume{15}\bibnumber{(2)}\thinspace{}\textnormal{:
+  }\bibpages{205\thinspace{}\textnormal{--}\thinspace{}215}\@.
+
+\bibitem{varma2023average}
+\bibauthor{VARMA N\@, YOSHIDA Y}\@. \bibtitle{Average sensitivity of graph
+  algorithms}\bibmark{[J]}\@. \bibjournal{SIAM Journal on Computing}\@,
+  \bibyear{2023}\@, \bibvolume{52}\bibnumber{(4)}\thinspace{}\textnormal{:
+  }\bibpages{1039\thinspace{}\textnormal{--}\thinspace{}1081}\@.
+
+\end{thebibliography}

@@ -1,3 +1,195 @@
-\chapter{模型2}
+\chapter{符号表示与理论基础}
 
-模型2实现细节。
+\section{图与最小割}
+
+我们用$G=(V,E)$来表示一个$n$个点$m$条边无向图，其中点集是$V$，边集是$E$。
+图中连接点$u$和点$v$的边用$(u,v)$表示。
+若无向图带权，则我们用$w$来表示边权，也就是说，对于一条边$(u,v)\in E$，其边权为$w(u,v)$。
+对于图上中的两个点集$V_1,V_2$，记连接两个点集的边集为
+\begin{equation*}
+    E(V_1,V_2)=\{(v_1,v_2)\in E|v_1\in V_1,v_2\in V_2\}
+\end{equation*}
+特别的，当$V_2=V\backslash V_1$时，$E(V_1,V_2)$可以简化为$E(V_1)$;
+记连接两个点集的边权和为
+\begin{equation*}
+    w(V_1,V_2)=\sum_{v_1\in V_1,v_2,\in V_2}w(v_1,v_2)
+\end{equation*}
+特别的，当$V_2=V\backslash V_1$时，$w(V_1,V_2)$可以简化为$w(V_1)$。
+在本文中，如无特殊说明，图允许重边的存在，但不允许自环边的存在，图是有限图，且保证图是连通图。
+
+接下来，我们给出图的最小割及相关概念的定义。
+\begin{definition}
+   给定图$G=(V,E)$，一个割$R=(V_1,V_2)$是将顶点集合分成两个不相交的非空子集$V_1$和$V_2$，
+   即满足$V_1\neq \emptyset,V_2\neq \emptyset,V_1\cap V_2=\emptyset,V_1\cup V_2=V$。
+\end{definition}
+割定义中的点集没有先后顺序，即$(V_1,V_2)=(V_2,V_1)$，
+所以只需要给出一个点集$V$的非空真子集$V_1$就可以唯一确定一个割。
+也就是说，割可以简化表示为$\Delta(V_1)=R(V_1,V\backslash V_1)$。
+这个简化表示满足$\Delta(V_1)=\Delta(V_2)$当且仅当$V_1=V_2$或$V_1=V\backslash V_2$。
+    \begin{definition}
+    给定图$G=(V,E)$和图上的一个割$R=(V_1,V_2)$，
+    割的边集为$E(V_1,V_2)$。
+\end{definition}
+与割的简化表示相对应，割$\Delta(V_1)$的边集也可以简化表示为$E(V_1)$。
+\begin{definition}
+    给定图$G=(V,E)$和图上的一个割$R=(V_1,V_2)$，
+    割的容量为$ w(V_1,V_2)$。
+\end{definition}
+割的容量也叫作割值。只需要将割的边集中的边权进行求和，就可以得到割的容量。
+因此，割的容量的另一个等价形式为$w(V_1)$。
+\begin{definition}[点的度数]
+    给定图$G=(V,E)$，点$v$的度数为
+    \begin{equation*}
+        \deg(v)=|\{e\in E|v\in e\}|
+    \end{equation*}
+\end{definition}
+\begin{definition}
+    给定图$G=(V,E)$，一个最小割$R=(V_1,V_2)$满足$R$是图$G$所有可能的割中容量最小的割。
+\end{definition}
+    我们用$R^*_{G}$表示图$G$的最小割集，$r^*_{G}\in R^*_{G}$表示一个最小割，
+    $\Phi_G=w(r^*_{G})$表示图$G$的最小割的割值。
+    此外，我们用$M_G=|R^*_{G}|$表示图$G$的最小割数量。
+\begin{definition}
+    给定图$G=(V,E)$，$\alpha$乘法近似，$\beta$加法近似最小割$R$满足$w(R)\leq \alpha ·\Phi_G+\beta$。
+\end{definition}
+在描述近似最小割时，若$\alpha=1$，则无需考虑该乘法参数，若$\beta=0$，则无需考虑该加法参数。
+\begin{definition}[$S-T$最小割]
+    给定图$G=(V,E)$和图上互不相交的两个非空点集$S,T\subset V$，
+    $S-T$最小割是满足$S\subseteq V_1,T\subseteq V_2$的割$(V_1,V_2)$中权值最小的割。
+\end{definition}
+我们记$S-T$最小割的割值为$\Phi(S,T)$。当$S$和$T$均为只包含一个点的集合时，可以得到$s-t$最小割的定义。
+
+\section{最小割数量的估计}
+
+最小割并不唯一。例如，当图为一条边权均相同的链时，每一条边都对应一个最小割。
+Karger给出了一个随机化的求解最小割的高效算法，他也通过这个算法对最小割的数量进行了估计。
+
+\begin{definition}
+    给定图$G=(V,E)$和点集的一个子集$X\subseteq V$，点收缩收缩过程为，在图$G$中新建一个点$x$，
+    对于点$y\in V\backslash X$，其向$x$连一条边权为$\sum_{x'\in X}w(y,x')$的边（若边权为$0$则不连边），
+    并将$X$及与其相连的边全部删除。
+\end{definition}
+
+\begin{definition}
+    给定图$G=(V,E)$和图上的一条边$(u,v)\in E$，边$(u,v)$的收缩定义为对$\{u,v\}$这一点集执行点收缩。
+\end{definition}
+
+Karger算法的思路如下：以均匀分布来随机选择图的一条边，并对这条边进行边收缩，
+重复该步骤直到图中的顶点数量等于一个预先设定的参数$k$为止。算法执行完时，如果一个割的割边集中没有边被收缩，那么我们说这个割是有效的。
+
+Karger提出了下面的定理来估计最小割数量。
+\begin{theorem}\cite{karger1993global}
+    在算法进行到图被收缩至$k$个顶点时，一个给定的最小割有效的概率是$\Omega((n/k)^{-2})$。
+\end{theorem}
+当$k=2$时，给定的最小割仍然有效的概率为$\Omega((n/2)^{-2})$，且在$k$的这个取值下，有且仅有一个割有效，
+因此，我们可以得到一个对最小割数量的估计。
+\begin{theorem}
+    给定图$G=(V,E)$，图中最小割数量至多为$n^2$。
+\end{theorem}
+Karger还将其算法进行了推广，由此可以得到一个对近似最小割数量的估计。
+\begin{theorem}\cite{karger1994random}
+    给定图$G=(V,E)$，图中$\alpha$乘法近似最小割的数量至多为$n^{2\alpha}$。
+\end{theorem}
+
+\section{仙人掌图表示法}
+
+仙人掌图表示法是最早由Dinitz等人提出的结构图，该结构图保留了原图所有的最小割信息，且结构图是仙人掌图。
+
+\begin{definition}
+    图$G$为仙人掌图当且仅当，对于任意边$e\in V_G$都满足$e$至多属于一个简单环。
+\end{definition}
+
+\begin{theorem}[仙人掌图表示法]\cite{dinitz1976structure}
+\label{cactus}
+    给定带权图$G$，存在一个仙人掌图$\Gamma$和映射$\varphi:V_G\rightarrow V_\Gamma$，满足：
+    \begin{itemize}
+        \item 对于点$v_1,v_2\in V_G$，$\varphi(v_1)=\varphi(v_2)$当且仅当图$G$不存在最小割$R=(V_1,V_2)$使得$v_1\in V_1,v_2\in V_2$；
+        \item 对于图$G$的任意一个最小割$R=(V_1,V_2)$，都满足$(\varphi(V_1),V_\Gamma\backslash\varphi(V_1))$是图$\Gamma$的一个最小割。
+    \end{itemize}
+\end{theorem}
+
+
+
+
+\section{差分隐私}
+
+差分隐私是一种针对敏感输入数据集计算的隐私定义，它聚焦于对个体隐私的保护。
+通俗来说，差分隐私要求在两个几乎相同的输入数据下，算法的计算过程应当同样保持几乎一致。
+当输入数据仅改变一个个体或者说一个元素时，任何输出结果的概率增幅不能超过一个很小的常数$e^\varepsilon$。
+图论算法中，输入的元素单位为边，而边权可以视作叠加边的数量，
+因此，图的差分隐私算法需要考察两个仅相差一条边的图的输出情况。
+接下来，我们给出差分隐私在图论中的形式化定义。
+
+\begin{definition}[边相邻]
+    称图$G,G'$边相邻当且仅当满足以下条件：
+    \begin{itemize}
+        \item 顶点集相等：$V_G=V_{G'}$；
+        \item 存在唯一边$(u,v)\in V^2$，使得$|w(u,v)-w_{G'}(u,v)|=1$；
+        \item 对于任意其余边$(u',v')\in V^2\backslash \{(u,v)\}$，满足$w(u,v)=w_{G'}(u,v)$。
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[差分隐私]\cite{dwork2006differential}
+    图算法$A$是$(\varepsilon,\delta)$差分隐私的，当且仅当对于任意的边相邻的图输入$G,G'$和输出值域的子集$O$，
+    有
+    \begin{equation*}
+        \mathbb P[A(G)\in O]\leq e^\varepsilon\mathbb P[A(G')\in O]+\delta
+    \end{equation*}
+    特别地，如果$\delta=0$，算法满足$\varepsilon$差分隐私。
+\end{definition}
+当$\delta=0$时，差分隐私也被称为纯差分隐私。当$\delta\neq 0$时，差分隐私也被称为近似差分隐私。
+近似差分隐私不能严格限定概率增幅，但是当$\delta$设定为一个极小的值时，仍然是一个有效的结果。
+
+\begin{theorem}[基本组合]\cite{dwork2006calibrating}\cite{dwork2009differential}
+    设$\varepsilon_1,\ldots,\varepsilon_t > 0$
+    且$\delta_1,\ldots,\delta_t > 0$。
+    若运行$t$个算法，其中第$i$个算法是$(\varepsilon_i,\delta_i)$差分隐私的，
+    那么整个算法是$(\varepsilon_1 + \ldots + \varepsilon_t,\delta_1 + \ldots + \delta_t)$
+    差分隐私的。
+\end{theorem}
+
+基本组合定理表明，一个差分隐私序列仍然具备差分隐私性。
+这使得在设计算法时，可以将目标拆解成若干个差分隐私步骤，
+从而降低了设计难度。
+
+\begin{definition}[拉普拉斯分布]
+    如果随机变量的概率密度函数分布为
+    \begin{equation*}
+        f(x|\mu,b)=\frac 1{2b} exp\left(-\frac{|x-\mu|}b\right)
+    \end{equation*}
+    那么它就是拉普拉斯分布。
+\end{definition}
+
+拉普拉斯分布的函数关于$x=\mu$轴对称，且对称轴的两侧分别是一个指数分布。拉普拉斯分布的期望为$\mu$，方差为$2b^2$。
+特别的，当$\mu=0$时，我们记该分布为$\text{Lap}(b)$。
+
+\begin{theorem}[拉普拉斯机制]\cite{dwork2014algorithmic}
+    给定一个将图$G$映射到$\mathbb{R}^d$的函数$f$，
+    其满足对于任意两个边相邻图$G$和$G'$，有$\|f(G)-f(G')\|_1 \leq \Delta$，
+    则发布加入独立同分布随机噪声$X_i \sim \text{Lap} (\Delta/\varepsilon)$的结果
+    \begin{equation*}
+        f(G)+(X_1,\ldots,X_d)
+    \end{equation*}
+    满足$\varepsilon$差分隐私。
+\end{theorem}
+
+\begin{theorem}[差分隐私图]\cite{liu2024almost}
+    令$\varepsilon \in \left(\frac{1}{n}, \frac{1}{2}\right) $和 
+    $ 0 < \delta < \frac{1}{2} $为差分隐私参数。
+    对于任意有$n$个点和$m$条边（$m\geq n$）的带权图$G$，存在一个$(\varepsilon,\delta)$-差分隐私算法，
+    能以至少$ 1 - o(1) $的概率输出一个合成图，
+    满足对于合成图中任意不想交的点集$ S, T \subseteq V_G $，
+    满足
+    \begin{equation*}
+        |w_G(S, T) - w_{\hat{G}}(S, T)| = O\left(\frac{\sqrt{nm}}{\varepsilon} \log^3 \left(\frac{n}{\delta}\right)\right)   
+    \end{equation*}
+    
+\end{theorem}
+
+拉普拉斯机制给出了一种差分隐私的方法，同时说明了敏感度$\Delta$与误差之间的关联。
+定理中噪声拉普拉斯函数的系数表明，
+敏感度越大，噪声的标准差也随之线性变大。
+
+TODO：指数机制
+
+TODO：top-k选择
