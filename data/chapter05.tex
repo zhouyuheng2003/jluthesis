@@ -1,2 +1,151 @@
 \chapter{差分隐私下近似最小割求解算法}
 
+本章将给出差分隐私下近似最小割求解算法的具体设计。
+算法应当是差分隐私的，且需要控制近似最小割与真实最小割的加法误差，
+我们还希望算法能尽可能多的给出近似最小割的解，此外，算法的运行效率也应当被考虑在内。
+
+\section{基于差分隐私图的算法设计}
+
+定理\ref{the:dpgraph}给出了一种基于拉普拉斯机制的算法，
+对于一个输入$G$，其可以以高概率$(\varepsilon,\delta)$-差分隐私的输出一个合成图$\hat G$，满足
+对于合成图中任意不相交的点集$ S, T \subseteq V_G $，
+    满足
+    \begin{equation*}
+        |w_G(S, T) - w_{\hat{G}}(S, T)| = O\left(\frac{\sqrt{nm}}{\varepsilon} \log^3 \left(\frac{n}{\delta}\right)\right)   
+    \end{equation*}
+这意味着对于任意一个最小割$R$，其在合成图$\hat G$中的割值都为$\Phi_G+ O\left(\frac{\sqrt{nm}}{\varepsilon} \log^3 \left(\frac{n}{\delta}\right)\right)$。
+也就是说，合成图$\hat G$保证近似最小割在进行隐私处理后仍然拥有一个较小的割值。
+
+算法需要差分隐私的发布一个最小割的割值，来辅助地找到合成图$\hat G$中的所有近似最小割。
+具体来说，首先可以调用定理\ref{the:mincut}中的最小割算法来求出$\Phi_G$。
+加入一条边对任意割的割值改动不超过$1$，因此最小割的割值的敏感度为$1$。
+根据定理\ref{laplace}中的拉普拉斯机制，我们可以$\varepsilon$-差分隐私的发布$\hat \Phi_G=\Phi_G+X$，
+其中$X\sim Lap(1/\varepsilon)$。
+
+拉普拉斯分布$Lap(1/\varepsilon)$的概率密度函数为
+\begin{equation*}
+    f(x)=\frac \varepsilon{2} e^{-\varepsilon|x|}
+\end{equation*}
+绝对值的概率密度函数为
+\begin{equation*}
+    f(x)=\varepsilon e^{-\varepsilon x},(x\geq 0)
+\end{equation*}
+绝对值的累计分布函数为
+\begin{equation*}
+    P(|X|\leq t)=1-e^{-\varepsilon x},(t\geq 0)
+\end{equation*}
+因此，有至少$1-\alpha$的概率$|X|\leq \frac1\varepsilon\ln\left(\frac1\alpha\right)$。
+也就是说，有高概率$\hat\Phi(G)=\Phi(G)+O(\frac1\varepsilon)$。
+
+接下来，将$\beta$定为一个极大的常数，并枚举$V_G$的所有子集$X$，
+并判断$\Delta(X)$在合成图$\hat G$中的割值是否满足
+$w_{\hat G}(X)\leq \hat \Phi_G+\beta \frac{\sqrt{nm}}{\varepsilon} \log^3 \left(\frac{n}{\delta}\right)$，
+满足条件的$\Delta(X)$被视为近似最小割。
+最后，输出所有近似最小割，若这样的近似最小割超过$n^2$个，
+则输出$w_{\hat G}(X)$值前$n^2$小的近似最小割。
+
+使用定理\ref{the:basic}并为每个算法的$\epsilon$和$\delta$赋合适的值，
+可以得出，运行以上几个算法是$(\varepsilon,\delta)$-差分隐私的，
+且能以高概率输出至少$M_G$个$O\left(\frac{\sqrt{nm}}{\varepsilon} \log^3 \left(\frac{n}{\delta}\right)\right)$近似的最小割。
+
+\section{基于$k$优选择机制的算法设计}
+
+$k$优选择机制\ref{the:topk}可以差分隐私的在$m$个值中取$k$个最小值。
+因此，如果我们可以差分隐私的获取最小割的数量$\hat M_G$，
+并用$k$优选择机制在所有$2^n$个割中选择权值前$\hat M_G$小的割，
+那么这$\hat M_G$个割就是差分隐私下的近似最小割。
+
+根据定理\ref{sen}，$0\leq M_G-M_{G'}\leq \frac{M_G}2+1.5n$。
+我们不妨令$a=\log_2(M_G+3n)$，其敏感度为$1$。
+接下来，使用拉普拉斯机制差分隐私的输出$a$的值$\hat a$，并令差分隐私的最小割数量为$\hat M_G=min{\{max{\{0,2^{\hat a}-3n\}},n^2\}}$。
+
+基于如上方法，我们可以得到$\hat M_G$个割以及每个割的$O(\frac{n\sqrt{n\log(1/\delta)}}{\varepsilon})$近似值。
+与上一节类似的，我们可以将$\beta$定为一个极大的常数，并对这$\hat M_G$个割
+判断其割值是否小于
+$\hat \Phi_G+\beta \frac{n\sqrt{n\log(1/\delta)}}{\varepsilon}$，
+满足条件的割视为近似最小割。
+
+相比于基于差分隐私图的算法，该算法加入了对最小割数量的估计，
+从而避免了近似最小割过多时输出割数量与最小割数量差异较大的问题。
+然而最小割数量本身的敏感度较高，因此在$M_G$较小的时候误差较大。
+
+对于图$G$的$M_G$个最小割中的每个割，其在$k$优选择机制中的的割值为$\Phi_G+O(\frac{\sqrt{kn\log(1/\delta)}}{\varepsilon})$。
+因此，当$\hat M_G\leq M_G$时，$k$优选择机制得到的割一定全都为近似最小割。
+这使得用二分法求解$\hat M_G$成为了一种方案，
+令$M^{min}_G$是使得$k$优选择机制得到的割不全为近似最小割的最小取值，
+则$M^{min}_G$可以通过$O(\log n)$次$k$优选择机制得到。
+其中$M_G\leq M^{min}_G-1$，因此不妨取$\hat G=M^{min}_G-1$，这样可以保证输出的近似最小割数量至少为最小割的数量。
+根据基本组合定理，近似参数将变为$O(\frac{n\sqrt{n\log(\log n/\delta)}\log n}{\varepsilon})$。
+
+\section{加法近似参数的优化}
+
+当$m=\Theta O(n^2)$时，
+基于差分隐私图的算法和基于$k$优选择机制的算法的加法近似参数都为$\tilde O(\frac{n\sqrt n}{\varepsilon})$。
+本节将给出一个融合指数机制和Karger收缩算法的方法，用以降低加法近似参数。
+
+在$k$优选择机制中，算法从$m$个数中选择了$k$个最小值，
+其加法近似参数$O(\frac{\sqrt{k\log(m/\delta)}}{\varepsilon})$同时由$m,k$决定。
+而受到最小割数量的限制，在最坏情况下，$k$的取值为$\Omega(n^2)$。
+因此要想优化加法近似参数，需要从降低$m$入手。
+
+在之前的算法中，由于图中所有割都是潜在的$k$小割，因此$m=2^n$。
+如果能将潜在$k$小割的范围缩小，就可以有效降低$m$的值。
+当$\alpha$为一常数时，Karger收缩算法可以在多项式复杂度内找到所有$\alpha$乘法近似最小割。
+具体来说，根据定理\ref{the:agl}，一个给定的$\alpha$乘法近似最小割在收缩至$\lfloor2\alpha\rfloor$割顶点时，
+其有效的概率为$\Omega(n^{-2\alpha})$。因此，执行$n^{2\alpha+1}$次Karger收缩算法，
+则该$\alpha$乘法近似最小割以高概率在至少一次算法执行中有效。因此，以高概率所有$\alpha$乘法近似最小割都被找到。
+
+设改进后算法的加法近似参数为$\beta$。
+若能保证对于图$G$的所有最小割，
+在调用$k$优选择机制时割值仍然小于$\Phi_G+\beta$，
+那么忽略割值超过$\Phi_G+\beta$的割将对找到这些最小割不产生影响。
+
+Karger收缩算法可以找到割值不超过$\alpha\Phi_G$的所有割，而算法需要找割值不超过$\Phi_G+\beta$的最小割，
+两者并不一致。
+观察得$\alpha=1+\frac \beta{\Phi_G}$，
+为了保证算法复杂度，$\alpha$的值必须为常数，因此需要将$G$进行一定处理来保证$\beta{\Phi_G}$存在一个常数上界。
+
+处理的目标是提高最小割的割值，这可以通过在图$G=(V,E)$中加边来实现。
+由于这一过程应当是差分隐私的，因此需要用指数分布来选择加边的边集。
+首先给定参数$T$，我们按如下方法构造一个边集$H$：
+\begin{itemize}
+    \item 将图$G$的$n$割顶点按任意顺序排列成一个环。
+    \item 对环上任意相邻两点，在$H$中加入$T/2$条连接这两个点的边权为$1$的边。
+\end{itemize}
+接下来，令$H_0\subset H_1,\ldots,\subset H_{|H|}$为任意大小严格递增的边集序列，且$H_{|H|}=H$。
+对于每个下标$i\in[1,|H|]$，令其权值为$|\Phi_{(V,E\cup H_i)}-T|$。
+使用指数机制选择下标$i$，则有高概率得到一个解，满足
+\begin{equation*}
+    Pr[|\Phi_{(V,E\cup H_i)}-T|>t_{min}+\frac{2\ln (nT)}{\varepsilon}+\frac{2t}{\varepsilon}]\leq \exp(-t)
+\end{equation*}
+容易证明，$t_{min}=0$。
+令$T=\frac{20\ln n}{\varepsilon}$，令$t=2\ln n$。
+整理，记
+\begin{equation*}
+    t_{range}=t_{min}+\frac{2\ln (nT)}{\varepsilon}+\frac{2t}{\varepsilon}=\frac{6\ln n+2\ln T}{\varepsilon}= \frac{6\ln n+2\ln(20\ln n)-2\ln \varepsilon}{\varepsilon}
+\end{equation*}
+当$\varepsilon\in[\frac1n,\frac12]$,$n\geq 200$时，有$t_{range}\leq \frac{10\ln n}{\varepsilon}$。
+
+记$\hat G=(V,E\cup H_i)$，则以$1-\frac1{n^2}$的概率满足
+\begin{equation*}
+    10\ln n/\varepsilon<\Phi_{\hat G}<\Phi_G+30\ln n/\varepsilon
+\end{equation*}
+
+在上述生成$\hat G$的过程中，加入边的数量为$O(\frac{n\ln n}{\varepsilon})$，
+且有$1\leq \frac{\Phi_G}{\Phi_{\hat G}}\leq 4$。
+因此，只需要在$\hat G$中运行$n^9$次Karger收缩算法，就能以高概率找到$G$的所有最小割。
+根据定理\ref{the:approximatemincutnumber}，$\alpha$乘法近似最小割的数量至多为$n^{2\alpha}$，
+所以找到割的数量是$O(n^8)$的。
+即$m=O(n^8)$，得到$k$优选择机制的加法近似参数为$O(\frac{n\sqrt{\log(n^8/\delta)}}{\varepsilon})$。
+算法的总加法近似参数因为加边操作而限制为$O(\frac{n\ln n}{\varepsilon})$。
+
+由于对最小割数量的估计方法并不优，所以在这个算法使用阈值筛选的方式找到最小割。
+算法定$k$的值为$n^2$，并按如上步骤找到权值$k$小的割。
+接下来，差分隐私的发布最小割的值$\hat \Phi_G$，然后将$\beta$定为一个极大的常数，
+并对这$n^2$个割分别判断其割值是否小于
+$\hat \Phi_G+\beta \frac{n\ln n}{\varepsilon}$，若是则将其作为输出。
+\begin{theorem}
+    给定$\varepsilon\in[\frac 1n,\frac12]$和$\delta$作为隐私参数。
+    对于给定任意$n\geq 200$的图$G$，存在一个$(\epsilon,\delta)$-差分隐私算法，
+    能够至少输出$M_G$个与最小割的割值$O(\frac{n\ln n}{\varepsilon})$近似的割。
+\end{theorem}

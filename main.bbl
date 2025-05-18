@@ -31,6 +31,13 @@
   \bibyear{2016}\thinspace{}\textnormal{:
   }\bibpages{357\thinspace{}\textnormal{--}\thinspace{}385}\@.
 
+\bibitem{vadhan2017complexity}
+\bibauthor{VADHAN S}\@. \bibtitle{The complexity of differential
+  privacy}\bibmark{[J]}\@. \bibjournal{Tutorials on the Foundations of
+  Cryptography: Dedicated to Oded Goldreich}\@,
+  \bibyear{2017}\thinspace{}\textnormal{:
+  }\bibpages{347\thinspace{}\textnormal{--}\thinspace{}450}\@.
+
 \bibitem{ford1956maximal}
 \bibauthor{FORD~JR L~R\@, FULKERSON D~R}\@. \bibtitle{Maximal flow through a
   network}\bibmark{[J]}\@. \bibjournal{Canadian journal of Mathematics}\@,
@@ -110,11 +117,6 @@
   \bibyear{2020}\thinspace{}\textnormal{:
   }\bibpages{85\thinspace{}\textnormal{--}\thinspace{}92}\@.
 
-\bibitem{liu2024almost}
-\bibauthor{LIU J\@, UPADHYAY J\@, ZOU Z}\@. \bibtitle{Almost linear time
-  differentially private release of synthetic graphs}\bibmark{[J]}\@.
-  \bibjournal{arXiv preprint arXiv:2406.02156}\@, \bibyear{2024}\@.
-
 \bibitem{karger1994random}
 \bibauthor{KARGER D~R}\@. \bibtitle{Random sampling in cut, flow, and network
   design problems}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of the
@@ -149,6 +151,27 @@
   and Trends{\textregistered} in Theoretical Computer Science}\@,
   \bibyear{2014}\@, \bibvolume{9}\bibnumber{(3--4)}\thinspace{}\textnormal{:
   }\bibpages{211\thinspace{}\textnormal{--}\thinspace{}407}\@.
+
+\bibitem{liu2024optimal}
+\bibauthor{LIU J\@, UPADHYAY J\@, ZOU Z}\@. \bibtitle{Optimal bounds on private
+  graph approximation}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of
+  the 2024 Annual ACM-SIAM Symposium on Discrete Algorithms (SODA)}\@.
+  \bibyear{2024}\thinspace{}\textnormal{:
+  }\bibpages{1019\thinspace{}\textnormal{--}\thinspace{}1049}\@.
+
+\bibitem{mcsherry2007mechanism}
+\bibauthor{MCSHERRY F\@, TALWAR K}\@. \bibtitle{Mechanism design via
+  differential privacy}\bibmark{[C]} //\thinspace{}\bibbooktitle{48th Annual
+  IEEE Symposium on Foundations of Computer Science (FOCS'07)}\@.
+  \bibyear{2007}\thinspace{}\textnormal{:
+  }\bibpages{94\thinspace{}\textnormal{--}\thinspace{}103}\@.
+
+\bibitem{qiao2021oneshot}
+\bibauthor{QIAO G\@, SU W\@, ZHANG L}\@. \bibtitle{Oneshot differentially
+  private top-k selection}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{International Conference on Machine Learning}\@.
+  \bibyear{2021}\thinspace{}\textnormal{:
+  }\bibpages{8672\thinspace{}\textnormal{--}\thinspace{}8681}\@.
 
 \bibitem{cunningham1985minimum}
 \bibauthor{CUNNINGHAM W~H}\@. \bibtitle{Minimum cuts, modular functions, and
