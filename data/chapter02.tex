@@ -8,14 +8,14 @@
 若图带权，则以$w$来表示边权，即边$(u,v)\in E$的权值为$w(u,v)$。
 
 对于图中的两个顶点子集$V_1,V_2\subseteq V$，定义连接二者的边集为
-\begin{equation*}
+\begin{equation}
     E(V_1,V_2)=\{(v_1,v_2)\in E|v_1\in V_1,v_2\in V_2\}
-\end{equation*}
+\end{equation}
 当$V_2=V\backslash V_1$时，$E(V_1,V_2)$简记为$E(V_1)$。
 相应的，连接二者的边集的边权和为
-\begin{equation*}
+\begin{equation}
     w(V_1,V_2)=\sum_{v_1\in V_1,v_2,\in V_2}w(v_1,v_2)
-\end{equation*}
+\end{equation}
 当$V_2=V\backslash V_1$时，$w(V_1,V_2)$简记为$w(V_1)$。
 
 如无特殊说明，本文中图为有限连通图，且允许图存在重边，但不允许存在自环。
@@ -41,20 +41,20 @@
 
 \begin{definition}[点的度数]
     给定图$G=(V,E)$，顶点$v$的度数定义为
-    \begin{equation*}
+    \begin{equation}
         \deg(v)=|\{e\in E|v\in e\}|
-    \end{equation*}
+    \end{equation}
 \end{definition}
 \begin{definition}
     给定图$G=(V,E)$，一个最小割$R=(V_1,V_2)$满足$R$是图$G$所有可能的割中容量最小的割。
 \end{definition}
-    我们用$R^*_{G}$表示图$G$的最小割集，$r^*_{G}\in R^*_{G}$表示一个最小割，
+    本文用$R^*_{G}$表示图$G$的最小割集，$r^*_{G}\in R^*_{G}$表示一个最小割，
     $\Phi_G=w(r^*_{G})$表示图$G$的最小割的割值。
-    此外，我们用$M_G=|R^*_{G}|$表示图$G$的最小割数量。
+    此外，本文用$M_G=|R^*_{G}|$表示图$G$的最小割数量。
 
     最小割并不唯一。例如，当图为一条边权均相同的链时，每一条边都对应一个最小割。
 \begin{definition}
-    给定图$G=(V,E)$，$\alpha$乘法近似，$\beta$加法近似最小割$R$满足$w(R)\leq \alpha ·\Phi_G+\beta$。
+    给定图$G=(V,E)$，$\alpha$乘法近似、$\beta$加法近似的最小割$R$满足$w(R)\leq \alpha ·\Phi_G+\beta$。
 \end{definition}
 在描述近似最小割时，若$\alpha=1$，则无需考虑该乘法参数，若$\beta=0$，则无需考虑该加法参数。
 \begin{definition}[$S-T$最小割]
@@ -88,7 +88,7 @@ Karger的收缩算法也是一个高效的求解最小割的随机算法，通�
 
 Karger的收缩算法的思路如下：以均匀分布随机选择图的一条边，并对这条边进行边收缩，
 重复该步骤直到图中的顶点数量等于一个预先设定的参数$k$为止。
-算法执行完时，如果一个割的割边集中没有边被收缩，那么我们说这个割是有效的。
+算法执行完时，如果一个割的割边集中没有边被收缩，那么称这个割是有效的。
 
 \begin{theorem}\cite{karger1993global}
     \label{the:gl}
@@ -97,6 +97,7 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
 当$k=2$时，给定的最小割仍然有效的概率为$\Omega((n/2)^{-2})$，且由于$k=2$，
 算法终止时有且仅有一个割有效。由概率分布的累计不能超过$1$，可以得到一个最小割数量的上界。
 \begin{theorem}
+    \label{the:mincutnumber}
     给定图$G=(V,E)$，图中最小割数量至多为$n^2$。
 \end{theorem}
 
@@ -139,7 +140,7 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
 当输入数据仅改变一个个体或者说一个元素时，任何输出结果的概率增幅不能超过一个很小的常数$e^\varepsilon$。
 图论算法中，输入的元素单位为边，而边权可以视作叠加边的数量，
 因此，图的差分隐私算法需要考察两个仅相差一条边的图的输出情况。
-接下来，我们给出差分隐私在图论中的形式化定义。
+接下来给出差分隐私在图论中的形式化定义。
 
 \begin{definition}[边相邻]
     称图$G,G'$边相邻当且仅当满足以下条件：
@@ -153,9 +154,9 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
 \begin{definition}[差分隐私]\cite{dwork2006differential}
     图算法$A$是$(\varepsilon,\delta)$差分隐私的，当且仅当对于任意的边相邻的图输入$G,G'$和输出值域的子集$O$，
     有
-    \begin{equation*}
+    \begin{equation}
         \mathbb P[A(G)\in O]\leq e^\varepsilon\mathbb P[A(G')\in O]+\delta
-    \end{equation*}
+    \end{equation}
     特别地，如果$\delta=0$，算法满足$\varepsilon$差分隐私。
 \end{definition}
 当$\delta=0$时，差分隐私也被称为纯差分隐私。当$\delta\neq 0$时，差分隐私也被称为近似差分隐私。
@@ -176,23 +177,23 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
 
 \begin{definition}[拉普拉斯分布]
     如果随机变量的概率密度函数分布为
-    \begin{equation*}
+    \begin{equation}
         f(x|\mu,b)=\frac 1{2b} exp\left(-\frac{|x-\mu|}b\right)
-    \end{equation*}
+    \end{equation}
     那么它就是拉普拉斯分布。
 \end{definition}
 
 拉普拉斯分布的函数关于$x=\mu$轴对称，且对称轴的两侧分别是一个指数分布。拉普拉斯分布的期望为$\mu$，方差为$2b^2$。
-特别的，当$\mu=0$时，我们记该分布为$\text{Lap}(b)$。
+特别的，当$\mu=0$时，记该分布为$\text{Lap}(b)$。
 
 \begin{theorem}[拉普拉斯机制]\cite{dwork2014algorithmic}
     \label{laplace}
     给定一个将图$G$映射到$\mathbb{R}^d$的函数$f$，
     其满足对于任意两个边相邻图$G$和$G'$，有$\|f(G)-f(G')\|_1 \leq \Delta$，
     则发布加入独立同分布随机噪声$X_i \sim \text{Lap} (\Delta/\varepsilon)$的结果
-    \begin{equation*}
+    \begin{equation}
         f(G)+(X_1,\ldots,X_d)
-    \end{equation*}
+    \end{equation}
     满足$\varepsilon$差分隐私。
 \end{theorem}
 
@@ -204,9 +205,9 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
     能以至少$ 1 - o(1) $的概率输出一个合成图$\hat G$，
     满足对于合成图中任意不相交的点集$ S, T \subseteq V_G $，
     都有
-    \begin{equation*}
+    \begin{equation}
         |w_G(S, T) - w_{\hat{G}}(S, T)| = O\left(\frac{\sqrt{nm}}{\varepsilon} \log^3 \left(\frac{n}{\delta}\right)\right)   
-    \end{equation*}
+    \end{equation}
     
 \end{theorem}
 
@@ -221,10 +222,15 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
     在差分隐私下，$k$优选择问题的两个输入$(x_1,x_2,\ldots,x_m)$和$(x'_1,x'_2,\ldots,x'_m)$相邻当且仅当$\|x-x'\|_\infty\leq 1$。
 \begin{theorem}[指数机制]\cite{mcsherry2007mechanism}
     对于最优选择问题，按分布
-    \begin{equation*}
+    \begin{equation}
         Pr[y=i]=\frac{exp(-\frac{\varepsilon}{2}x_i)}{\sum_{j\in[m]}exp(-\frac{\varepsilon}{2}x_j)}
-    \end{equation*}
-   输出下标$y$，则能以高概率得到一个$O(\frac{2\log m}{\varepsilon})$近似的最小值，且算法是$\varepsilon$-差分隐私的。
+    \end{equation}
+   输出下标$y$，则有
+   \begin{equation}
+        Pr[x_i>x_{min}+\frac{2\ln(\frac{m}{m_{min}})}{\varepsilon}+\frac{2t}{\varepsilon}]\leq e^{-t}
+    \end{equation}
+   其中$x_{min}$为$x$的最小取值，$m_{min}$为满足最小取值的下标数量。
+   选择合适的$t$，该方法能以高概率得到一个$O(\frac{2\log m}{\varepsilon})$近似的最小值，且算法是$\varepsilon$-差分隐私的。
 \end{theorem}
 
 对指数机制进行扩展，可以得到$k$优选择机制。
@@ -234,6 +240,10 @@ Karger的收缩算法的思路如下：以均匀分布随机选择图的一条�
     令$\varepsilon\leq 0.2 $和 
     $ \delta < 0.05 $为差分隐私参数。
     对于任意$m\geq 2$，存在一个$(\varepsilon,\delta)$-差分隐私算法，
-    能输出一组$k$优选择问题的答案下标，且以高概率输出每个数的$O(\frac{\sqrt{k\log(m/\delta)}}{\varepsilon})$近似值。
+    输出一组$k$优选择问题的答案下标，
+    并能以高概率实现，
+    输出每个数的$O(\frac{\sqrt{k\log(m/\delta)}}{\varepsilon})$近似值，
+    并保证对于每个整数$i\in [1,k]$，第$i$优值是真实值的$O(\frac{\sqrt{k\log(m/\delta)}}{\varepsilon})$近似。
+
 \end{theorem}
 

@@ -31,6 +31,13 @@
   \bibyear{2016}\thinspace{}\textnormal{:
   }\bibpages{357\thinspace{}\textnormal{--}\thinspace{}385}\@.
 
+\bibitem{dinur2003revealing}
+\bibauthor{DINUR I\@, NISSIM K}\@. \bibtitle{Revealing information while
+  preserving privacy}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of
+  the twenty-second ACM SIGMOD-SIGACT-SIGART symposium on Principles of
+  database systems}\@. \bibyear{2003}\thinspace{}\textnormal{:
+  }\bibpages{202\thinspace{}\textnormal{--}\thinspace{}210}\@.
+
 \bibitem{vadhan2017complexity}
 \bibauthor{VADHAN S}\@. \bibtitle{The complexity of differential
   privacy}\bibmark{[J]}\@. \bibjournal{Tutorials on the Foundations of
@@ -117,6 +124,13 @@
   \bibyear{2020}\thinspace{}\textnormal{:
   }\bibpages{85\thinspace{}\textnormal{--}\thinspace{}92}\@.
 
+\bibitem{liu2024optimal}
+\bibauthor{LIU J\@, UPADHYAY J\@, ZOU Z}\@. \bibtitle{Optimal bounds on private
+  graph approximation}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of
+  the 2024 Annual ACM-SIAM Symposium on Discrete Algorithms (SODA)}\@.
+  \bibyear{2024}\thinspace{}\textnormal{:
+  }\bibpages{1019\thinspace{}\textnormal{--}\thinspace{}1049}\@.
+
 \bibitem{karger1994random}
 \bibauthor{KARGER D~R}\@. \bibtitle{Random sampling in cut, flow, and network
   design problems}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of the
@@ -151,13 +165,6 @@
   and Trends{\textregistered} in Theoretical Computer Science}\@,
   \bibyear{2014}\@, \bibvolume{9}\bibnumber{(3--4)}\thinspace{}\textnormal{:
   }\bibpages{211\thinspace{}\textnormal{--}\thinspace{}407}\@.
-
-\bibitem{liu2024optimal}
-\bibauthor{LIU J\@, UPADHYAY J\@, ZOU Z}\@. \bibtitle{Optimal bounds on private
-  graph approximation}\bibmark{[C]} //\thinspace{}\bibbooktitle{Proceedings of
-  the 2024 Annual ACM-SIAM Symposium on Discrete Algorithms (SODA)}\@.
-  \bibyear{2024}\thinspace{}\textnormal{:
-  }\bibpages{1019\thinspace{}\textnormal{--}\thinspace{}1049}\@.
 
 \bibitem{mcsherry2007mechanism}
 \bibauthor{MCSHERRY F\@, TALWAR K}\@. \bibtitle{Mechanism design via

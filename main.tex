@@ -3,6 +3,18 @@
 \usepackage{booktabs, multirow, longtable, makecell, subfig}
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{frame = single, tabsize = 4, fontsize=\footnotesize}
 
+
+\fancypagestyle{style@frontmatter}{ % 罗马数字页码样式
+    \fancyhf{} % 清除所有页眉页脚
+    \fancyfoot[R]{\Roman{page}} % 页脚居中显示罗马数字
+}
+
+\makeatletter
+\fancypagestyle{plain}{ % 重定义 plain 样式
+  \fancyhf{}
+  \fancyfoot[R]{\Roman{page}} % 与 style@frontmatter 保持一致
+}
+\makeatother
 \begin{document}
 
 \let\cleardoublepage\clearpage
@@ -10,26 +22,33 @@
 % 封面
 \makecover
 
+\pagenumbering{Roman} % 切换到罗马数字页码
+\setcounter{page}{1} 
 
 % 承诺书
 \commitment
-\thispagestyle{style@empty}
+\thispagestyle{style@frontmatter}
 % 中文摘要
 \input{data/cabstract}
-\thispagestyle{style@empty}
+\thispagestyle{style@frontmatter}
 
 % 英文摘要
 \input{data/eabstract}
-\thispagestyle{style@empty}
+\thispagestyle{style@frontmatter}
 
 % 目录
+% \newpage
+% \pagenumbering{gobble} 
+% {
+%     \pagestyle{style@frontmatter}
+%     \tableofcontents
+%     \clearpage
+% }
 \newpage
-\pagenumbering{gobble} 
-{
-    \pagestyle{style@empty}
-    \tableofcontents
-    \clearpage
-}
+\pagestyle{style@frontmatter}
+\thispagestyle{style@frontmatter}
+\tableofcontents
+\clearpage
 
 % 正文
 \pagenumbering{arabic} 
